@@ -9,7 +9,11 @@ editor_options:
   
 ## Overview of my data science profile
   
+<<<<<<< HEAD
   I am a data enthusiast, who loves data and is able to understand the language that data speaks. I have a good technical background. 
+=======
+  I am a data enthusiast, who loves data and is able to understand the language that data speaks. I have a good technical background and I am currently going through a Data Science Program at the Stutern SGA 0.7, Data Science track.. 
+>>>>>>> 29884ea8c14a05cad8b549f53b10db74d1d6ebe6
   Please, find attached below, a barchart which gives a brief description of my data science skills.
   
 
@@ -24,5 +28,8 @@ library(ggplot2)
 ggplot(data=data_science_profile, aes(x=skill, y=score))  + 
   geom_bar(stat="identity")
 ```
+<<<<<<< HEAD
 
 ![My Profile](My Data Science Profile.png)
+=======
+>>>>>>> 29884ea8c14a05cad8b549f53b10db74d1d6ebe6
