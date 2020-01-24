@@ -25,4 +25,6 @@ ggplot(data=data_science_profile, aes(x=skill, y=score))  +
   geom_bar(stat="identity")
 ```
 
-![My Profile](C:\Users\Kenn\Desktop\SGA07_DATASCI\Profile.png)
+![Profile](Profile.png)
+
+
