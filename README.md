@@ -9,7 +9,7 @@ editor_options:
   
 ## Overview of my data science profile
   
-  I am a data enthusiast, who loves data and is able to understand the language that data speaks. I have a good technical background and I am currently going through a data science improvement program with STUTERN. I would be happy to help your company interpret the language the data is trying to communicate with you. I look forward to hearing from you soon. 
+  I am a data enthusiast, who loves data and is able to understand the language that data speaks. I have a good technical background and I am currently going through a Data Science Program at the Stutern SGA 0.7, Data Science track.. 
   Please, find attached below, a barchart which gives a brief description of my data science skills.
   
 
