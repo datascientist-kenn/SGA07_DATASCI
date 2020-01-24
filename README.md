@@ -28,8 +28,5 @@ library(ggplot2)
 ggplot(data=data_science_profile, aes(x=skill, y=score))  + 
   geom_bar(stat="identity")
 ```
-<<<<<<< HEAD
 
-![My Profile](My Data Science Profile.png)
-=======
->>>>>>> 29884ea8c14a05cad8b549f53b10db74d1d6ebe6
+![My Profile](C:\Users\Kenn\Desktop\SGA07_DATASCI\My Data Science Profile.png)
