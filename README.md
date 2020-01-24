@@ -14,7 +14,7 @@ editor_options:
   
 
 ```{r echo=FALSE}
-skill <- c("Reading", "Crit.Think.", "Time Man.", "Maths", " Coding", "Sys.Des.", "Reporting", "Listen", "Team", "Curiosity")
+skill <- c("Reading", "Critical Thinking", "Time Management", "Mathematics", " Programming", "System Design", "Report Writing", "Listening", "Teamwork", "Curiosity")
 score <- c(9, 9, 10, 10, 7, 5, 8, 9, 10, 9)
 
 data_science_profile <- data.frame(skill, score)
