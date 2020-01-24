@@ -9,7 +9,7 @@ editor_options:
   
 ## Overview of my data science profile
   
-  I am a data enthusiast, who loves data and is able to understand the language that data speaks. I have a good technical background and I am currently going through a data science improvement program with STUTERN. I would be happy to help your company interpret the language the data is trying to communicate with you. I look forward to hearing from you soon. 
+  I am a data enthusiast, who loves data and is able to understand the language that data speaks. I have a good technical background. 
   Please, find attached below, a barchart which gives a brief description of my data science skills.
   
 
@@ -24,3 +24,5 @@ library(ggplot2)
 ggplot(data=data_science_profile, aes(x=skill, y=score))  + 
   geom_bar(stat="identity")
 ```
+
+![My Profile](My Data Science Profile.png)
