@@ -1,0 +1,37 @@
+---
+title: "Data"
+author: "Kenneth I. Dagogo"
+date: "1/24/2020"
+output: html_document
+---
+
+```{r echo=FALSE}
+
+Player <- c("V. Van Dijk", "S. Mane", "M. Salah", "D. Origi", "R. Firmino", "Fabinho", "J. Henderson,", "A. Robertson", "T. Alexandre-Arnold", "G. Wijnaldum")
+
+Gender <- c("Male", "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Male")
+
+Age <- c(29, 27, 27, 24, 29, 26, 29, 25, 21, 29)
+
+Position <- c("Defender", "Forward", "Forward", "Forward", "Forward", "Midfield", "Midfield", "Left Back", "Right Back", "Midfield")
+
+Years_of_Experience <- c(9, 8, 14, 7, 9, 8, 11, 7, 4, 16)
+
+Goals_Scored <- c(5, 178, 103, 80, 115, 27, 33, 13, 12, 123)
+
+Career_Games <- c(317, 339, 373, 255, 382, 240, 426, 288, 119, 502)
+
+Pass_Rating <- c(70, 77, 81, 67, 80, 78, 83, 77, 82, 78)
+
+Pace_Rating <- c(77, 94, 93, 82, 77, 68, 64, 85, 80, 77)
+
+Fifa20_Rating <- c(90, 88, 90, 78, 86, 85, 83, 85, 83, 84)
+
+Weekly_Wage <- c("180,000", "100,000", "200,000", "-", "180,000", "100,000", "140,000", "50,000", "40,000", "75,000")
+
+Player.data <- data.frame(Player, Gender, Position, Years_of_Experience, Goals_Scored, Career_Games, Pass_Rating, Pace_Rating, Fifa20_Rating, Weekly_Wage)
+
+Player.data
+
+write.csv(Data, Data.csv)
+```
