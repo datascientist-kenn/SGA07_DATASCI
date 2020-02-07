@@ -10,7 +10,7 @@ editor_options:
 ## Overview of my data science profile
   
   I am a data enthusiast, who loves data and is able to understand the language that data speaks. I have a good technical background. 
-  Please, find attached below, a barchart which gives a brief description of my data science skills.
+Please find attached below, a barchart which gives a brief description of my data science skills.
   
 
 ```{r echo=FALSE}
@@ -25,4 +25,5 @@ ggplot(data=data_science_profile, aes(x=skill, y=score))  +
   geom_bar(stat="identity")
 ```
 
-![My Profile](C:\Users\Kenn\Desktop\SGA07_DATASCI\My Data Science Profile.png)
+![Profile](Profile.png)
+

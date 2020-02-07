@@ -1,0 +1,373 @@
+---
+title: "Exploring The 'mtcars' Data Set"
+author: "Kenneth I. D."
+date: "2/1/2020"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+## Description, Format and Information of the data set
+   The data was extracted from the 1974 Motor Trend US magazine. It comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles of 1973-1974 models.
+  
+   The data frame consists of 32 observations on 11 numeric variables. These variables are as follows:    
+1. mpg: Miles per (US) Gallons    
+2. cyl: Number of Cylinders    
+3. disp: Displacement    
+4: hp: Gross Horsepower    
+5. drat: Rear Axle Ratio    
+6. wt: Weight (1000lbs)    
+7. qsec: Quarter (1/4) Mile Time    
+8. vs: Engine (0 = V-Shaped, 1 = Straight)    
+9. am: Transmission (0 = Automatic, 1 = Manual)    
+10. gear: Number of Forward Gears    
+11. carb: Number of Carburetors
+  
+###  _Source_: 
+Henderson and Velleman (1981), Building multiple regression models interactively. Bio-metrics, 37, 391-411
+
+```{r, echo = FALSE}
+### Loading the dataset into a dataframe
+data("mtcars")
+```
+
+To see the structure of the data set
+```{r, echo = FALSE}
+str(mtcars)
+```
+
+The top 6 rows of the data set
+```{r, echo=FALSE}
+head(mtcars)
+```
+
+The bottow rows of the data set
+```{r, echo=FALSE}
+tail(mtcars)
+```
+
+##_Exploring the data set_
+
+Number of rows are
+```{r, echo=FALSE}
+nrow(mtcars)
+```
+
+Number of columns are
+```{r, echo=FALSE}
+ncol(mtcars)
+```
+
+Perform the 5 number summary on every column on the entire data set
+```{r, echo=FALSE}
+summary(mtcars)
+```
+
+## *To find the mode of every variable in the data set, since this is not an inbuilt function, we have to calculate for each variable.*
+     
+For the miles per gallon(mpg) data
+```{r, echo=FALSE}
+  mode_mpg <- names(sort(-table(mtcars$mpg)))[1]
+mode_mpg
+paste("the mode of the miles per gallon is", mode_mpg)  
+```
+
+For the cylinder(cyl) data
+```{r, echo=FALSE}
+mode_cyl <- names(sort(-table(mtcars$cyl)))[1]
+mode_cyl
+paste("the mode of the cylinder is", mode_cyl)  
+```
+
+For the displacement data
+```{r, echo=FALSE}
+mode_disp <- names(sort(-table(mtcars$disp)))[1]
+mode_disp
+paste("the mode of the displacement is", mode_disp)  
+```
+
+For the gross horsepower data
+```{r, echo=FALSE}
+mode_hp <- names(sort(-table(mtcars$hp)))[1]
+mode_hp    
+paste("the mode of the Horsepower is", mode_hp)  
+```
+
+For the rear axle ratio (drat)
+```{r, echo=FALSE}
+mode_drat <- names(sort(-table(mtcars$drat)))[1]
+mode_drat
+paste("the mode of the rear axle ratio is", mode_drat)  
+```
+
+For the weight
+```{r, echo=FALSE}
+mode_wt <- names(sort(-table(mtcars$wt)))[1]
+mode_wt
+paste("the mode of the weight is", mode_wt)  
+```
+For the 1/4 mile time
+```{r, echo=FALSE}
+mode_qsec <- names(sort(-table(mtcars$qsec)))[1]
+mode_qsec
+paste("the mode of the quarter mile is", mode_qsec)  
+```
+For the engine
+```{r, echo=FALSE}
+mode_vs <- names(sort(-table(mtcars$vs)))[1]
+mode_vs
+paste("the mode for the engine type is", mode_vs)    
+```
+For the transmission
+```{r, echo=FALSE}
+mode_am <- names(sort(-table(mtcars$am)))[1]
+mode_am
+paste("the most automatic transmission type is", mode_am)    
+```
+For the number of forward gears
+```{r, echo=FALSE}
+mode_gear <- names(sort(-table(mtcars$gear)))[1]
+mode_gear
+paste("the mode for the number of forward gear is", mode_gear)    
+```
+For the number of carburetors
+```{r, echo=FALSE}
+mode_carb <- names(sort(-table(mtcars$carb)))[1]
+mode_carb
+paste("the mode for the number of carburetors is", mode_carb)  
+```
+
+_Exploring the number of cars and their miles per hour_
+
+```{r, echo=FALSE}
+library(ggplot2)
+ggplot(mtcars, aes(mpg)) +
+  geom_histogram(binwidth = 4)  + xlab('Miles Per Gallon')  +  ylab('Number of Cars') + 
+      ggtitle('Distribution by Mileage')
+```
+
+_Exploring the distribution by cylinders_
+
+```{r, echo=FALSE}
+library(ggplot2)
+ggplot(mtcars, aes(cyl)) +
+  geom_histogram(binwidth = 1)  + xlab('Number of Cylinders')  +  ylab('Number of Cars') + 
+  ggtitle('Distribution by the Number of Cylinders')
+```
+
+
+_Exploring the distribution by horsepower_
+
+```{r, echo=FALSE}
+library(ggplot2)
+ggplot(mtcars, aes(hp)) +
+  geom_histogram(binwidth = 15)  + xlab('Gross Horsepower')  +  ylab('Number of Cars') + 
+  ggtitle('Distribution by Horsepower')
+```
+
+_Exploring the distribution by the number of forward gears_
+
+The cars in this category have forward gears of 
+```{r, echo=FALSE}
+head(subset(mtcars, select='gear'))
+factor(mtcars$gear)
+```
+
+The frequency of the different categories of forward gears are
+```{r, echo=FALSE}
+cat_gear=table(mtcars$gear)
+cat_gear
+df_gear=as.data.frame(cat_gear)
+names(df_gear)[1]='forward gear type'
+df_gear
+```
+15 cars have forward gear 3, 12 cars have forward gear 4, while 5 cars have forward gear 5. This is illustrated by the barplot below
+```{r, echo=FALSE}
+barplot(table(mtcars$gear))
+```
+
+_Exploring the distribution by the engine type_
+
+The cars in this category have engine types of either 0 (V-Shaped) or 1 (Straight)
+```{r, echo=FALSE}
+head(subset(mtcars, select='vs'))
+factor(mtcars$vs)
+```
+
+The frequency of the different categories of engines are
+```{r, echo=FALSE}
+cat_vs=table(mtcars$vs)
+cat_vs
+df_vs=as.data.frame(cat_vs)
+names(df_vs)[1]='engine type'
+df_vs
+```
+18 cars have V-Shaped engines (0), while 14 cars are have straight shaped engines (1). This is illustrated by the barchart below
+```{r, echo=FALSE}
+barplot(table(mtcars$vs))
+```
+
+_Exploring the distribution by the transmission type_
+
+The cars in this category have transmission types of either 0 (automatic) or 1 (manual)
+```{r, echo=FALSE}
+head(subset(mtcars, select='am'))
+factor(mtcars$am)
+```
+
+The frequency of the different categories of transmission are
+```{r, echo=FALSE}
+cat_am=table(mtcars$am)
+cat_am
+df_am=as.data.frame(cat_am)
+names(df_am)[1]='Transmission type'
+df_am
+```
+19 cars have automatic transmission, 13 cars are manually transmitted. This is illustrated by the barchart below
+```{r, echo=FALSE}
+barplot(table(mtcars$am), ylab='Number of cars')
+```
+
+_Exploring the distribution by the Number of Carburetors type_
+
+The cars in this category have carburetors of
+```{r, echo=FALSE}
+head(subset(mtcars, select='carb'))
+factor(mtcars$carb)
+```
+
+The frequency of the different categories of number of carburetors are
+```{r, echo=FALSE}
+cat_carb=table(mtcars$carb)
+cat_carb
+df_carb=as.data.frame(cat_carb)
+names(df_carb)[1]='Number of Carburetors'
+df_carb
+```
+
+```{r, echo=FALSE}
+barplot(table(mtcars$carb), ylab='Number of cars')
+```
+
+
+ _Correlation between the mileage and the horsepower_
+```{r, echo=FALSE}
+cor(mtcars$mpg, mtcars$hp)  
+```
+There is a strong negative correlation between the mileage and the horsepower. This means that the miles per gallons tend to decrease with increasing horsepower of a vehicle and vice versa. Meaning a more powerful vehicle is likely to use up more gas/fuel.
+
+Further testing the correlation of these variables, we find that the correlation implies that the hypothesis is trustworthy.
+```{r, echo=FALSE}
+cor.test(mtcars$mpg, mtcars$hp)
+```
+
+Fitting the correlation findings in to a plot,
+```{r, echo=FALSE}
+ggplot(mtcars, aes(hp, mpg)) + 
+  geom_point() + geom_smooth(method = "lm", se = FALSE) +
+  ylab("Miles per Gallon") +
+  xlab("Number of Horsepower") +
+  ggtitle("Correlation between Horsepower and Mileage")
+```
+we see that an increase in the horsepower of any car will result in a negative impact on the mileage of that car. According to the hypothesis.
+
+```{r, echo=FALSE}
+ggplot(mtcars, aes(hp, mpg)) + stat_smooth() + 
+  geom_point() + 
+  ylab("Miles per Gallon") +
+  xlab("Number of Horsepower") +
+  ggtitle("Correlation between the Number of Horsepower and the Mileage")
+```
+
+_Exploring the data_
+
+ _Correlation between the mileage and the displacement_
+
+```{r, echo=FALSE}
+cor(mtcars$mpg, mtcars$disp)  
+```
+There also is a strong negative correlation between the mileage and the displacement of a car. Meaning that a car is very likely to drop mileage with increasing displacement or distance covered.
+The test of this hypothesis shows a strong that the hypothesis was correct.
+```{r, echo=FALSE}
+cor.test(mtcars$mpg, mtcars$disp)
+```
+An increase in the distance a car covers results in a negative impact on its mileage.
+Putting this in visuals,
+```{r, echo=FALSE}
+ggplot(mtcars, aes(disp, mpg)) + 
+  geom_point() + geom_smooth(method = "lm", se = FALSE) + 
+  ylab("Miles per Gallon") +
+  xlab("Displacement") +
+  ggtitle("Correlation between Displacement and Mileage")
+```
+There is a steady drop in mileage, with increasing displacement.
+```{r, echo=FALSE}
+ggplot(mtcars, aes(disp, mpg)) + stat_smooth() + 
+  geom_point() + 
+  ylab("Miles per Gallon") +
+  xlab("Dislacement") +
+  ggtitle("Correlation between Displacement and Mileage")
+```
+
+ _Correlation between the mileage and the quarter mile ratio_
+```{r, echo=FALSE}
+cor(mtcars$mpg, mtcars$qsec)  
+```
+There is a positive correlation between the mileage and the quarter mile time. This means that an increase in mileage will have a positive impact on the quarter mile time and vice versa. A drop in any will similarly have a negative impact on the other.
+To test this hypothesis,
+```{r, echo=FALSE}
+cor.test(mtcars$mpg, mtcars$qsec)
+```
+and putting the test into visualization
+
+```{r, echo=FALSE}
+ggplot(mtcars, aes(qsec, mpg)) + 
+  geom_point() + geom_smooth(method = "lm", se = FALSE) + 
+  ylab("Miles per Gallon") +
+  xlab("Quarter Mile Ratio") +
+  ggtitle("Correlation between Quarter Mile Ratio and Mileage")
+```
+it is shown that the hypothesis was right and both the mileage and the quarter mile time have similar impact on each other.
+```{r, echo=FALSE}
+ggplot(mtcars, aes(qsec, mpg)) + stat_smooth() + 
+  geom_point() + 
+  ylab("Miles per Gallon") +
+  xlab("Quarter Mile Ratio") +
+  ggtitle("Correlation between Quarter Mile Ratio and Mileage")
+```
+
+ _Correlation between the mileage and the number of cylinders_
+```{r, echo=FALSE}
+cor(mtcars$mpg, mtcars$cyl)  
+```
+There is a strong negative correlation between the number of cylinders and the mileage. This implies that an increase in the number of cylinders in a vehicle will have a negative impact on the miles per gallon
+To tst this hypothesis
+```{r, echo=FALSE}
+cor.test(mtcars$mpg, mtcars$qsec)
+```
+Putting this test into visualization on a qplot
+```{r, echo=FALSE}
+qplot(cyl, mpg, data = mtcars, colour = cyl, geom = "point", 
+  ylab = "Miles per Gallon",   xlab ="Number of Cylinders", 
+  main = "Correlation between Number of Cylinders and Mileage")
+```
+Fitting the points on the qplot
+```{r, echo=FALSE}
+ggplot(mtcars, aes(cyl, mpg)) + 
+  geom_point() + geom_smooth(method = "lm", se = FALSE) + 
+  ylab("Miles per Gallon") +
+  xlab("Number of Cylinders") +
+  ggtitle("Correlation between the Number of Cylinders and the Mileage")
+```
+The negative relationship between the miles per gallon and the number of cylinders is shown. The higher the number of cylinders a car has in its engine, the more gallons of gas or fuel it requires to travel, hence low mileage.
+
+ _Correlation plot for the mcars data set_
+```{r, echo=FALSE}
+library(corrplot)
+M <- cor(mtcars)
+corrplot::corrplot(M,  method = 'square') 
+corrplot(M, type = "lower")  
+corrplot.mixed(M, lower.col = "black", number.cex = .9)
+```
+The correlation matrices shown above shows how all the variables in the data set are related to each other. Positive values show positive impact on respective variables while negative value shows negative impact on respective variables.
