@@ -495,6 +495,7 @@ Model 1
 ```{r,echo=FALSE}
 predict(fit, data.frame(mtcars))
 df_fit <- as.data.frame(predict(fit, data.frame(mtcars)))
+write.csv(df_fit, file = 'mtcars_multivariate_model_prediction.csv')
 ```
 
 The cyl_model
@@ -503,4 +504,19 @@ fit_cyl <- lm(mpg ~ cyl, data = train)
 summary(fit_cyl)
 predict(fit_cyl, data.frame(mtcars))
 df_fit_cyl <- as.data.frame(predict(fit_cyl, data.frame(mtcars)))
+write.csv(df_fit_cyl, file = 'mtcars_cyl_model_prediction.csv')
+```
+
+Mean Square Error for the multivariate regression model
+```{r, echo=FALSE}
+library(Metrics)
+multi_mse <- mse(predict(fit, data.frame(mtcars)), mtcars$mpg)
+multi_mse
+```
+
+Mean Square Error for the cyl regression model
+```{r, echo=FALSE}
+library(Metrics)
+cyl_mse <- mse(predict(fit_cyl, data.frame(mtcars)), mtcars$mpg)
+cyl_mse
 ```
