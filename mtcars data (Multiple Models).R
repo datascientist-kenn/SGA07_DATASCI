@@ -1,3 +1,5 @@
+rmarkdown::render("mtcars data.R")
+rmarkdown::render("mtcars data.R", "pdf_document" )
 # Loading the dataset into a dataframe
 data("mtcars")
 
@@ -215,4 +217,31 @@ M <- cor(mtcars)
 corrplot::corrplot(M,  method = 'square') 
 corrplot(M, type = "lower")  
 corrplot.mixed(M, lower.col = "black", number.cex = .9)
+  
+mtcars_cor <- cor(subset(mtcars, select =-(mpg)))
+corrplot(mtcars_cor, method="circle")
+
+# Predictive Analysis
+train <- mtcars[1:7, ]
+test <- mtcars[8:10, ]
+
+# Multiple Regression Analysis
+
+# Predictive Analysis
+# Creating the dependent variable
+
+#library(dplyr)
+#mtcars$id <- 1:nrows(mtcars$mpg)
+#y <- mtcars$mpg
+#y_train <- mtcars$mpg %>% dplyr::sample_frac(.70) #divides the sample 70% to 30%
+#y_test <- dplyr::anti_join(mtcars$mpg, y_train, by='id') # 30% left
+
+# Creating the independent variable
+#x <- data.frame(mtcars) %>% select(cyl, disp, hp, wt, drat, vs, am)
+#mtcars$idx <- 1:nrows(x)
+#x_train <- x %>% dplyr::sample_frac(.70)
+#x_test <- dplyr::anti_join(x, x_train, by='idx') # 30% left
+
+
+
   
